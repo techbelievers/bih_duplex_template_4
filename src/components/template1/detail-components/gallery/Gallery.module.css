@@ -1,8 +1,8 @@
-/* Gallery - property detail page redesign */
+/* Luxury Gallery - property detail */
 .showcaseContainer {
   padding: 4rem 1.5rem;
-  background: var(--color-bg-light);
-  font-family: var(--font-body);
+  background: var(--luxury-cream);
+  font-family: var(--font-luxury-body);
 }
 
 .galleryContainer {
@@ -12,14 +12,34 @@
   margin-right: auto;
 }
 
+.label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--luxury-gold-dark);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
 .heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   color: var(--color-text-dark);
   text-align: center;
   margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
+}
+
+.heading::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--luxury-gold);
+  margin: 0.5rem auto 0;
 }
 
 .subheading {
@@ -41,16 +61,16 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--color-bg-card);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--color-bg-light);
+  box-shadow: var(--shadow-luxury-card);
+  border: 1px solid var(--luxury-border);
   aspect-ratio: 4/3;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
 }
 
 .galleryItem:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(15, 118, 110, 0.15);
-  border-color: rgba(15, 118, 110, 0.3);
+  box-shadow: var(--shadow-luxury-hover);
+  border-color: var(--luxury-border-gold);
 }
 
 .imageWrapper {
@@ -112,12 +132,12 @@
   transform: translateY(0);
 }
 
-/* Modal */
+/* Modal - luxury */
 .modal {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(28, 25, 23, 0.92);
+  background: rgba(26, 29, 41, 0.92);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -146,7 +166,8 @@
   display: block;
   border-radius: var(--radius-lg);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-  background: var(--color-bg-dark);
+  border: 1px solid var(--luxury-border-gold);
+  background: var(--luxury-navy);
 }
 
 .closeButton {
@@ -169,8 +190,8 @@
 }
 
 .closeButton:hover {
-  background: var(--color-primary);
-  color: #fff;
+  background: var(--luxury-gold);
+  color: var(--luxury-navy);
 }
 
 /* Video section - same max-width as gallery so heading and video align on desktop */
@@ -203,8 +224,8 @@
 }
 
 .videoItem:hover {
-  border-color: rgba(15, 118, 110, 0.3);
-  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.1);
+  border-color: var(--luxury-border-gold);
+  box-shadow: var(--shadow-luxury-hover);
 }
 
 .videoItem iframe {

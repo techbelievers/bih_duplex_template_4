@@ -6,9 +6,17 @@ import { API, DEFAULT_DOMAIN } from "../../config.js";
 import Loader from "../components/loader/Loader.jsx";
 import Template1 from "../components/template1/StudioTemplate.jsx";
 
+const normalizeColorTheme = (val) => {
+  const n = parseInt(val, 10);
+  if (Number.isNaN(n) || n < 1) return 1;
+  if (n > 16) return 16;
+  return n;
+};
+
 const StudioPage = () => {
   const { property_slug } = useParams();
   const [templateId, setTemplateId] = useState(null);
+  const [colorTheme, setColorTheme] = useState(1);
   const [propertyDetails, setPropertyDetails] = useState(null);
   const [headerData, setHeaderData] = useState(null);
   const [seoData, setSeoData] = useState(null);
@@ -27,9 +35,11 @@ const StudioPage = () => {
       try {
         const domain = DEFAULT_DOMAIN;
 
-        // Fetch Template ID
+        // Fetch Template ID and color theme
         const templateResponse = await axios.get(API.TEMPLATE_STUDIO(domain));
-        setTemplateId(templateResponse.data.templateId || '1');
+        const templateData = templateResponse.data || {};
+        setTemplateId(templateData.templateId || '1');
+        setColorTheme(normalizeColorTheme(templateData.color_theme ?? templateData.colorTheme ?? 1));
 
         // Fetch Property Details
         const propertyResponse = await axios.get(
@@ -82,7 +92,7 @@ const StudioPage = () => {
   const ogTitle = seo.og_title || seo.title || propertyDetails.property_name || '';
   const ogDescription = seo.og_description || seo.meta_description || propertyDetails.seo_meta_description || propertyDetails.property_description || '';
   const ogImage = seo.og_image || propertyDetails.property_photo || propertyDetails.property_image || '';
-  const canonicalUrl = `https://${seo.domain || DEFAULT_DOMAIN}/studios/${property_slug}`;
+  const canonicalUrl = `https://${seo.domain || DEFAULT_DOMAIN}/${property_slug}`;
 
   return (
     <>
@@ -125,6 +135,7 @@ const StudioPage = () => {
               propertyDetails={propertyDetails}
               headerData={headerData}
               galleryData={galleryData}
+              colorTheme={colorTheme}
             />
           </Suspense>
         )}

@@ -36,10 +36,10 @@ function App() {
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/studios/:property_slug" element={<StudioPage />} />
             <Route path="/blogs/:post_slug" element={<BlogContent />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/:property_slug" element={<StudioPage />} />
           </Routes>
         </Suspense>
       </Router>

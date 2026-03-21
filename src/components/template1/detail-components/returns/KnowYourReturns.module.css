@@ -1,8 +1,9 @@
-/* Returns - clean block */
+/* Luxury Returns section */
 .returnsSection {
   padding: 3.5rem 1.5rem;
   background: var(--color-bg-card);
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
+  border-top: 1px solid var(--luxury-border);
 }
 
 .contentWrapper {
@@ -25,19 +26,28 @@
 
 .logoArrow {
   font-size: 1.25rem;
-  color: var(--color-primary);
+  color: var(--luxury-gold);
 }
 
 .heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: clamp(1.35rem, 2.5vw, 1.75rem);
   font-weight: 600;
   color: var(--color-text-dark);
   margin: 0;
 }
 
+.heading::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--luxury-gold);
+  margin: 0.5rem auto 0;
+}
+
 .highlight {
-  color: var(--color-primary);
+  color: var(--luxury-gold-dark);
 }
 
 .tabs {
@@ -52,29 +62,30 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--color-text);
-  background: var(--color-bg-light);
-  border: 1px solid var(--color-bg-light);
+  background: var(--luxury-cream);
+  border: 1px solid var(--luxury-border);
   border-radius: var(--radius);
   cursor: pointer;
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
+  transition: border-color var(--transition-smooth), color var(--transition-smooth), background var(--transition-smooth);
 }
 
 .tab:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--luxury-gold);
+  color: var(--luxury-gold-dark);
 }
 
 .tab.activeTab {
-  background: var(--color-primary);
-  color: #fff;
-  border-color: var(--color-primary);
+  background: var(--luxury-gold);
+  color: var(--luxury-navy);
+  border-color: var(--luxury-gold);
 }
 
 .tabContent {
-  background: var(--color-bg-light);
+  background: var(--luxury-cream);
   border-radius: var(--radius);
   padding: 1.5rem;
-  border: 1px solid var(--color-bg-light);
+  border: 1px solid var(--luxury-border);
 }
 
 .table {
@@ -87,7 +98,7 @@
 .table td {
   padding: 0.5rem 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--color-bg-light);
+  border-bottom: 1px solid var(--luxury-border);
 }
 
 .table th {
@@ -102,7 +113,7 @@
 }
 
 .table tbody tr:last-child td {
-  color: var(--color-primary);
+  color: var(--luxury-gold-dark);
   font-weight: 600;
   border-bottom: none;
 }

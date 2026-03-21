@@ -79,6 +79,7 @@ const RealEstateShowcase = ({slug}) => {
     <div className={styles.showcaseContainer}>
       {/* Gallery Section */}
       <div id="gallery" className={styles.galleryContainer}>
+        <span className={styles.label}>Gallery</span>
         <h2 className={styles.heading}>{galleryHeading}</h2>
         <p className={styles.subheading}>{gallerySubheading}</p>
         <div className={styles.galleryGrid}>

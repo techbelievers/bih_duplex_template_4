@@ -2,14 +2,22 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { API, DEFAULT_DOMAIN } from "../../config.js";
-import Loader from "../components/loader/Loader";
+import Loader from "../components/loader/Loader.jsx";
 import FloatingButtons from "../components/template1/components/FloatingButtons.jsx";
 
 // Lazy load Template1
 const Template1 = lazy(() => import("../components/template1/App.jsx"));
 
+const normalizeColorTheme = (val) => {
+  const n = parseInt(val, 10);
+  if (Number.isNaN(n) || n < 1) return 1;
+  if (n > 16) return 16;
+  return n;
+};
+
 const HomePage = () => {
   const [templateId, setTemplateId] = useState(null);
+  const [colorTheme, setColorTheme] = useState(1);
   const [propertyDetails, setPropertyDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,9 +32,11 @@ const HomePage = () => {
         const seoResponse = await axios.get(API.SEO_DETAIL(domain));
         setSeoData(seoResponse.data);
 
-        // Fetch template ID
+        // Fetch template ID and color theme
         const templateResponse = await axios.get(API.TEMPLATE());
-        setTemplateId(templateResponse.data.templateId || '1');
+        const templateData = templateResponse.data || {};
+        setTemplateId(templateData.templateId || '1');
+        setColorTheme(normalizeColorTheme(templateData.color_theme ?? templateData.colorTheme ?? 1));
 
         // Fetch property details
         const propertyResponse = await axios.get(API.PROPERTY_DETAILS(domain));
@@ -73,7 +83,7 @@ const HomePage = () => {
         
         {templateId === '3' && (
           <Suspense fallback={<Loader />}>
-            <Template1 propertyDetails={propertyDetails} />
+            <Template1 propertyDetails={propertyDetails} colorTheme={colorTheme} />
           </Suspense>
         )}
         

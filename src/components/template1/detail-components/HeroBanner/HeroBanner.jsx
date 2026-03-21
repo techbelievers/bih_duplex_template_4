@@ -71,10 +71,12 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
       ? galleryData.map((p) => p.photo)
       : [propertyDetails.property_featured_photo || "/default-image.jpg"];
 
+  const hasKeyInfo = servicesData?.location || servicesData?.builder_name || servicesData?.property_type_price_range_text;
+
   return (
     <section className={styles.hero}>
-      {/* Full-bleed image with overlay */}
-      <div className={styles.slider}>
+      {/* Full-bleed background slider */}
+      <div className={styles.bg}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentImageIndex}
@@ -83,54 +85,40 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <div className={styles.overlay} />
-          </motion.div>
+            transition={{ duration: 0.5 }}
+          />
         </AnimatePresence>
-
-        <div className={styles.heroInner}>
-          <h1 className={styles.title}>{propertyDetails.property_name || "Property"}</h1>
-          {propertyDetails.tagline && <p className={styles.tagline}>{propertyDetails.tagline}</p>}
-          <div className={styles.ctaRow}>
-            <a href="#price" className={styles.ctaPrimary}>View pricing</a>
-            <button
-              type="button"
-              className={styles.ctaSecondary}
-              onClick={() => {
-                setFormOpen(true);
-                setTimeout(() => {
-                  formSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-                }, 100);
-              }}
-            >
-              Request callback
-            </button>
-          </div>
-        </div>
-
-        {allImages.length > 1 && (
-          <>
-            <div className={styles.dots}>
-              {allImages.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  className={i === currentImageIndex ? styles.dotActive : styles.dot}
-                  onClick={() => setCurrentImageIndex(i)}
-                  aria-label={`Slide ${i + 1}`}
-                />
-              ))}
-            </div>
-            <span className={styles.counter}>{currentImageIndex + 1} / {allImages.length}</span>
-          </>
-        )}
+        <div className={styles.overlay} />
       </div>
+      <div className={styles.spacer} aria-hidden />
 
-      {/* Key info strip */}
-      {(servicesData?.location || servicesData?.builder_name || servicesData?.property_type_price_range_text) && (
-        <div className={styles.strip}>
-          <div className={styles.stripInner}>
+      {/* Slider controls - bottom right */}
+      {allImages.length > 1 && (
+        <div className={styles.sliderControls}>
+          <div className={styles.dots}>
+            {allImages.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                className={i === currentImageIndex ? styles.dotActive : styles.dot}
+                onClick={() => setCurrentImageIndex(i)}
+                aria-label={`Slide ${i + 1}`}
+              />
+            ))}
+          </div>
+          <span className={styles.counter}>{currentImageIndex + 1} / {allImages.length}</span>
+        </div>
+      )}
+
+      {/* Content wrapper: card + form - responsive alignment */}
+      <div className={styles.heroContent}>
+      <div className={styles.card}>
+        <span className={styles.badge}>Featured property</span>
+        <h1 className={styles.title}>{propertyDetails.property_name || "Property"}</h1>
+        {propertyDetails.tagline && <p className={styles.tagline}>{propertyDetails.tagline}</p>}
+
+        {hasKeyInfo && (
+          <div className={styles.pills}>
             {servicesData.location && (
               <span className={styles.pill}><strong>Location</strong> {servicesData.location}</span>
             )}
@@ -141,31 +129,36 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
               <span className={styles.pill}><strong>Type</strong> {servicesData.property_type_price_range_text}</span>
             )}
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Enquiry form - collapsible card */}
+        <div className={styles.ctaRow}>
+          <a href="#price" className={styles.ctaPrimary}>View pricing</a>
+          <button
+            type="button"
+            className={styles.ctaSecondary}
+            onClick={() => {
+              setFormOpen(true);
+              setTimeout(() => formSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
+            }}
+          >
+            Request callback
+          </button>
+        </div>
+      </div>
+
+      {/* Enquiry strip */}
       <div ref={formSectionRef} className={styles.formSection} id="request-callback">
-        <div className={styles.formWrap}>
+        <div className={styles.formCard}>
           {servicesData?.property_builder_photo && (
             <div className={styles.builderLogo}>
               <img src={servicesData.property_builder_photo} alt={servicesData.builder_name || "Builder"} />
             </div>
           )}
           <h2 className={styles.formTitle}>
-            {formOpen ? `I'm Interested in ${propertyDetails?.property_name || "this property"}` : "Interested in this property?"}
+            {formOpen ? `I'm interested in ${propertyDetails?.property_name || "this property"}` : "Interested? Get a callback"}
           </h2>
           {!formOpen ? (
-            <button
-              type="button"
-              className={styles.formToggle}
-              onClick={() => {
-                setFormOpen(true);
-                setTimeout(() => {
-                  formSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-                }, 100);
-              }}
-            >
+            <button type="button" className={styles.formToggle} onClick={() => setFormOpen(true)}>
               Share your details
             </button>
           ) : (
@@ -176,7 +169,7 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
               </div>
               <input type="tel" name="phone_number" placeholder="Phone *" value={formData.phone_number} onChange={handleInputChange} required maxLength={10} pattern="\d{10}" />
               <input type="email" name="email_id" placeholder="Email" value={formData.email_id} onChange={handleInputChange} />
-              <textarea name="message" placeholder="Message" value={formData.message} onChange={handleInputChange} rows={3} />
+              <textarea name="message" placeholder="Message" value={formData.message} onChange={handleInputChange} rows={2} />
               {submitError && <p className={styles.formError}>{submitError}</p>}
               {formSubmitted && <p className={styles.formSuccess}>Thank you. Redirecting…</p>}
               <div className={styles.formActions}>
@@ -188,6 +181,7 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
             </form>
           )}
         </div>
+      </div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -16,6 +17,26 @@ const Header = ({ headerData: initialHeaderData, slug }) => {
   const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     const fetchHeaderData = async () => {
@@ -59,86 +80,113 @@ const Header = ({ headerData: initialHeaderData, slug }) => {
     );
   }
 
-  const isPropertiesPage = location.pathname.includes("/studios");
+  const reservedPaths = ["/blogs", "/privacy-policy", "/thank-you"];
+const isPropertiesPage = /^\/[^/]+$/.test(location.pathname) && location.pathname.length > 1 && !reservedPaths.includes(location.pathname);
   const isHomePage = location.pathname === "/";
   const contact = headerData?.contact || headerData?.data?.contact || "+91-81818-17136";
   const logo = headerData?.logo || headerData?.data?.logo || "/default-logo.png";
 
+  const navLinks = isPropertiesPage
+    ? [
+        { href: "/", label: "Home" },
+        { href: "#about", label: "About" },
+        { href: "#price", label: "Price" },
+        { href: "#amenities", label: "Amenities" },
+        { href: "#layouts", label: "Layouts" },
+        { href: "#gallery", label: "Gallery" },
+        { href: "#location", label: "Location" },
+      ]
+    : isHomePage
+    ? [
+        { href: "/", label: "Home" },
+        { href: "#properties", label: "Properties" },
+        { href: "#blogs", label: "Blogs" },
+        { href: "#faq", label: "FAQ" },
+      ]
+    : [{ href: "/", label: "Home" }];
+
   return (
-    <header className={styles.header}>
-      <div className={styles.bar}>
-        <Link to="/" className={styles.logoWrap}>
-          <img src={logo} alt="Logo" className={styles.logo} />
-        </Link>
-
-        <nav className={styles.nav}>
-          <a href="/" className={styles.navLink}>Home</a>
-          {isPropertiesPage && (
-            <>
-              <a href="#about" className={styles.navLink}>About</a>
-              <a href="#price" className={styles.navLink}>Price</a>
-              <a href="#amenities" className={styles.navLink}>Amenities</a>
-              <a href="#layouts" className={styles.navLink}>Layouts</a>
-              <a href="#gallery" className={styles.navLink}>Gallery</a>
-              <a href="#location" className={styles.navLink}>Location</a>
-            </>
-          )}
-          {isHomePage && !isPropertiesPage && (
-            <>
-              <a href="#properties" className={styles.navLink}>Properties</a>
-              <a href="#blogs" className={styles.navLink}>Blogs</a>
-              <a href="#faq" className={styles.navLink}>FAQ</a>
-            </>
-          )}
-        </nav>
-
-        <div className={styles.actions}>
-          <a href={`tel:${contact.replace(/\s/g, "")}`} className={styles.phoneLink}>
-            <FaPhone className={styles.phoneIcon} />
-            <span>{contact}</span>
-          </a>
-          <button type="button" onClick={() => setIsPopupOpen(true)} className={styles.enquireBtn}>
-            Enquire
-          </button>
-        </div>
-
-        <button type="button" className={styles.menuBtn} onClick={toggleMenu} aria-label="Menu">
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {menuOpen && (
-        <div className={styles.drawer}>
-          <nav className={styles.drawerNav}>
-            <a href="/" onClick={toggleMenu} className={styles.drawerLink}>Home</a>
-            {isPropertiesPage && (
-              <>
-                <a href="#about" onClick={toggleMenu} className={styles.drawerLink}>About</a>
-                <a href="#price" onClick={toggleMenu} className={styles.drawerLink}>Price</a>
-                <a href="#amenities" onClick={toggleMenu} className={styles.drawerLink}>Amenities</a>
-                <a href="#layouts" onClick={toggleMenu} className={styles.drawerLink}>Layouts</a>
-                <a href="#gallery" onClick={toggleMenu} className={styles.drawerLink}>Gallery</a>
-                <a href="#location" onClick={toggleMenu} className={styles.drawerLink}>Location</a>
-              </>
-            )}
-            {isHomePage && !isPropertiesPage && (
-              <>
-                <a href="#properties" onClick={toggleMenu} className={styles.drawerLink}>Properties</a>
-                <a href="#blogs" onClick={toggleMenu} className={styles.drawerLink}>Blogs</a>
-                <a href="#faq" onClick={toggleMenu} className={styles.drawerLink}>FAQ</a>
-              </>
-            )}
-          </nav>
-          <div className={styles.drawerActions}>
-            <a href={`tel:${contact.replace(/\s/g, "")}`} onClick={toggleMenu} className={styles.drawerPhone}>
-              <FaPhone /> Call
+    <header className={`${styles.header} ${menuOpen ? styles.headerMenuOpen : ""}`}>
+      {/* Row 1: Logo centered, actions right */}
+      <div className={styles.topRow}>
+        <div className={styles.topRowInner}>
+          <Link to="/" className={styles.logoWrap}>
+            <img src={logo} alt="Logo" className={styles.logo} />
+          </Link>
+          <div className={styles.actions}>
+            <a href={`tel:${contact.replace(/\s/g, "")}`} className={styles.phoneLink}>
+              <span className={styles.phoneLabel}>Call us</span>
+              <span className={styles.phoneValue}>{contact}</span>
             </a>
-            <button type="button" onClick={() => { setIsPopupOpen(true); toggleMenu(); }} className={styles.drawerEnquire}>
-              Enquire
+            <button type="button" onClick={() => setIsPopupOpen(true)} className={styles.enquireBtn}>
+              Request a callback
             </button>
           </div>
+          <button
+            type="button"
+            className={`${styles.menuBtn} ${menuOpen ? styles.menuBtnOpen : ""}`}
+            onClick={toggleMenu}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="site-menu-drawer"
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
-      )}
+      </div>
+
+      {/* Row 2: Full-width nav strip */}
+      <div className={styles.navStrip}>
+        <nav className={styles.nav}>
+          {navLinks.map((link) => (
+            <a key={link.href + link.label} href={link.href} className={styles.navLink}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      {/* Mobile: full-screen overlay (portal → body so layout is viewport-centered, not header-relative) */}
+      {menuOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            id="site-menu-drawer"
+            className={styles.drawer}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeMenu();
+            }}
+          >
+            <div className={styles.drawerInner} onClick={(e) => e.stopPropagation()}>
+              <nav className={styles.drawerNav}>
+                {navLinks.map((link) => (
+                  <a key={link.href + link.label} href={link.href} onClick={closeMenu} className={styles.drawerLink}>
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+              <div className={styles.drawerActions}>
+                <a href={`tel:${contact.replace(/\s/g, "")}`} onClick={closeMenu} className={styles.drawerPhone}>
+                  <FaPhone /> {contact}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsPopupOpen(true);
+                    closeMenu();
+                  }}
+                  className={styles.drawerEnquire}
+                >
+                  Request a callback
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
 
       {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} slug={slug} />}
     </header>

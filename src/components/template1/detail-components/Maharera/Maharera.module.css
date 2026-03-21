@@ -1,8 +1,8 @@
-/* Maharera - clean block */
+/* Luxury MahaRERA block */
 .mahareraSection {
   padding: 3.5rem 1.5rem;
-  background: var(--color-bg-light);
-  font-family: var(--font-body);
+  background: var(--luxury-cream);
+  font-family: var(--font-luxury-body);
 }
 
 .clipBackground {
@@ -24,24 +24,25 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.35rem 0.75rem;
-  background: rgba(15, 118, 110, 0.1);
+  background: rgba(201, 162, 39, 0.12);
+  border: 1px solid rgba(201, 162, 39, 0.3);
   border-radius: 999px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--luxury-gold-dark);
   margin-bottom: 0.75rem;
 }
 
 .heading { margin: 0 0 0.35rem; }
 
 .headingMain {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: clamp(1.35rem, 2.5vw, 1.75rem);
   font-weight: 600;
   color: var(--color-text-dark);
 }
 
-.highlight { color: var(--color-primary); }
+.highlight { color: var(--luxury-gold-dark); }
 
 .subheading {
   font-size: 0.9375rem;
@@ -52,7 +53,7 @@
 .headerDivider {
   width: 40px;
   height: 2px;
-  background: var(--color-primary);
+  background: var(--luxury-gold);
   margin: 0.5rem auto 0;
   border-radius: 1px;
 }
@@ -70,10 +71,11 @@
 
 .card {
   background: var(--color-bg-card);
-  border: 1px solid var(--color-bg-light);
+  border: 1px solid var(--luxury-border);
   border-radius: var(--radius);
   overflow: hidden;
   padding: 1.25rem;
+  box-shadow: var(--shadow-luxury-card);
 }
 
 .cardTopBorder {
@@ -85,7 +87,7 @@
 }
 
 .phaseName {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: 1.0625rem;
   font-weight: 600;
   color: var(--color-text-dark);
@@ -100,7 +102,7 @@
 
 .detailItem {
   padding: 0.4rem 0;
-  border-bottom: 1px solid var(--color-bg-light);
+  border-bottom: 1px solid var(--luxury-border);
   font-size: 0.875rem;
 }
 
@@ -124,7 +126,7 @@
 .cardFooter {
   margin-top: 1rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--color-bg-light);
+  border-top: 1px solid var(--luxury-border);
   text-align: center;
 }
 

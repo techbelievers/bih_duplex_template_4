@@ -1,16 +1,30 @@
+/* Luxury Property Details text block */
 .section {
   padding: 3rem 1.5rem;
   max-width: 720px;
   margin: 0 auto;
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
+  background: var(--color-bg-card);
 }
 
 .title {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-text-dark);
   margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--luxury-border);
+}
+
+.title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.25em;
+  background: var(--luxury-gold);
+  margin-right: 0.5rem;
+  vertical-align: -0.25em;
 }
 
 .content {
@@ -20,27 +34,30 @@
 }
 
 .content p { margin: 0 0 0.75rem; }
-.content h2, .content h3 { margin: 1.25rem 0 0.5rem; font-family: var(--font-heading); }
+.content h2, .content h3 { margin: 1.25rem 0 0.5rem; font-family: var(--font-luxury-heading); }
+.content a { color: var(--luxury-gold-dark); }
+.content a:hover { color: var(--luxury-navy); }
 
 .toggle {
   margin-top: 1rem;
   padding: 0.5rem 0;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--luxury-gold-dark);
   background: none;
   border: none;
   cursor: pointer;
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
+  transition: color var(--transition-smooth);
 }
 
-.toggle:hover { text-decoration: underline; }
+.toggle:hover { color: var(--luxury-navy); }
 
 .loading, .error {
   padding: 2rem;
   text-align: center;
   color: var(--color-text-light);
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
 }
 
 .error { color: #b91c1c; }

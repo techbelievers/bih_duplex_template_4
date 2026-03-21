@@ -70,15 +70,31 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
+      {/* Top CTA strip */}
+      <div className={styles.ctaStrip}>
+        <div className={styles.ctaStripInner}>
+          <p className={styles.ctaStripText}>Ready to find your perfect space?</p>
+          <div className={styles.ctaStripActions}>
+            <a href={`tel:${phone.replace(/\s/g, "")}`} className={styles.ctaStripPhone}>
+              {phone}
+            </a>
+            <a href="#contact" className={styles.ctaStripBtn}>
+              Get in touch
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className={styles.wrap}>
-        <div className={styles.top}>
+        {/* Centered single column: logo, tagline, links row, social */}
+        <div className={styles.main}>
           <div className={styles.brand}>
             <img src={logo} alt="Logo" className={styles.logo} />
             <p className={styles.tagline}>
               Your trusted partner for studio apartments. MAHARERA certified.
             </p>
           </div>
-          <div className={styles.links}>
+          <div className={styles.linksRow}>
             <a href="#properties">Properties</a>
             <a href="#blogs">Blogs</a>
             <a href="#faq">FAQ</a>
@@ -98,14 +114,11 @@ const Footer = () => {
               </a>
             ))}
           </div>
-          <div className={styles.contact}>
-            <a href={`tel:${phone.replace(/\s/g, "")}`}>{phone}</a>
-          </div>
         </div>
 
         {g_setting.footer_agent_rera && (
           <div className={styles.rera}>
-            <span className={styles.reraLabel}> Agent MahaRERA</span>
+            <span className={styles.reraLabel}>Agent MahaRERA</span>
             <span className={styles.reraNum}>{g_setting.footer_agent_rera}</span>
           </div>
         )}
@@ -126,9 +139,7 @@ const Footer = () => {
           <p className={styles.copyright}>
             {g_setting.footer_copyright || "© 2024. All rights reserved."}
           </p>
-          <p className={styles.credit}>
-            Made for property seekers
-          </p>
+          <p className={styles.credit}>Made for property seekers</p>
         </div>
       </div>
     </footer>

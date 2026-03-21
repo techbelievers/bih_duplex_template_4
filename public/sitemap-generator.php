@@ -79,7 +79,7 @@ foreach ($propertyData['property_details'] as $property) {
     $lastMod = date('Y-m-d', strtotime($property['updated_at']));
     $sitemap .= "
         <url>
-            <loc>https://$finalDomain/studios/{$property['property_slug']}</loc>
+            <loc>https://$finalDomain/{$property['property_slug']}</loc>
              <lastmod>$lastMod</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>

@@ -92,13 +92,13 @@
   <link rel="preload" as="image" href="<%= encodeURI(og_image) %>" fetchpriority="high" />
   <% } %>
   
-  <!-- Optimized font loading - new theme: Fraunces + DM Sans -->
+  <!-- Optimized font loading - luxury theme: Cormorant Garamond + DM Sans + Fraunces -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" as="style" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" media="print" onload="this.media='all';this.onload=null" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&display=swap" as="style" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&display=swap" media="print" onload="this.media='all';this.onload=null" />
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&display=swap" />
   </noscript>
   <script>
     (function() {
@@ -116,7 +116,7 @@
     (function() {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap';
+      link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&display=swap';
       link.media = 'print';
       link.onload = function() { this.media = 'all'; };
       if (document.readyState === 'loading') {
@@ -134,7 +134,7 @@
     h1.text-3xl,
     h1.text-5xl,
     h1.text-6xl {
-      font-family: "Fraunces", Georgia, serif !important;
+      font-family: "Cormorant Garamond", "Fraunces", Georgia, serif !important;
       font-weight: 700 !important;
       font-size: clamp(1.875rem, 5vw, 3.75rem) !important;
       color: #ffffff !important;
@@ -146,24 +146,31 @@
     body {
       font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
-      color: #44403C;
-      background-color: #FAFAF9;
+      color: #4a4a4a;
+      background-color: #faf9f6;
     }
     
-    /* Initial Loader - new theme */
+    /* Initial Loader - luxury progress bar (redesigned) */
     #initial-loader {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      background-color: #FAFAF9;
+      background: linear-gradient(160deg, #faf9f6 0%, #f0ede6 50%, #faf9f6 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+    }
+    
+    #initial-loader::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 40%, rgba(201, 162, 39, 0.06) 0%, transparent 55%);
+      pointer-events: none;
     }
     
     #initial-loader.hidden {
@@ -172,25 +179,52 @@
       pointer-events: none;
     }
     
-    .initial-loader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid #F5F5F4;
-      border-top: 4px solid #0F766E;
-      border-radius: 50%;
-      animation: initial-loader-spin 1s linear infinite;
+    .initial-loader-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .initial-loader-label {
+      font-family: "Cormorant Garamond", "Fraunces", Georgia, serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #a8861f;
+    }
+    
+    .initial-loader-bar-wrap {
+      width: 200px;
+      height: 3px;
+      background: rgba(26, 29, 41, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .initial-loader-bar {
+      height: 100%;
+      width: 45%;
+      background: linear-gradient(90deg, #c9a227, #d4af37);
+      border-radius: 3px;
+      animation: initial-loader-slide 1.2s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(201, 162, 39, 0.4);
+    }
+    
+    @keyframes initial-loader-slide {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(260%); }
     }
     
     .initial-loader-text {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #78716C;
       font-family: "DM Sans", system-ui, -apple-system, sans-serif;
-    }
-    
-    @keyframes initial-loader-spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #6b6b6b;
+      letter-spacing: 0.02em;
     }
   </style>
   
@@ -314,10 +348,15 @@
 </head>
 
 <body>
-  <!-- Initial Loader - Shows immediately while CSS/JS load -->
+  <!-- Initial Loader - Luxury progress bar (shows before app loads) -->
   <div id="initial-loader">
-    <div class="initial-loader-spinner"></div>
-    <div class="initial-loader-text">Loading...</div>
+    <div class="initial-loader-inner">
+      <span class="initial-loader-label">Loading</span>
+      <div class="initial-loader-bar-wrap">
+        <div class="initial-loader-bar"></div>
+      </div>
+      <span class="initial-loader-text">Preparing your experience…</span>
+    </div>
   </div>
   
   <div id="root"></div>

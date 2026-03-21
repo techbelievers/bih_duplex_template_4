@@ -20,6 +20,7 @@ const Services = () => {
 
   return (
     <section className={styles.section}>
+      <span className={styles.label}>At a glance</span>
       <div className={styles.grid}>
         <div className={styles.card}>
           <img src={headerData.logo} alt="Builder" className={styles.cardImg} />

@@ -16,13 +16,14 @@ import Loader from '../loader/Loader';
 const PropertyDetails = lazy(() => import('./detail-components/property-details/PropertyDetails'));
 const MahareraInformation = lazy(() => import('./detail-components/Maharera/MahaReraInformation'));
 
-function StudioTemplate({ propertyDetails, headerData, galleryData }) {
+function StudioTemplate({ propertyDetails, headerData, galleryData, colorTheme = 1 }) {
   if (!propertyDetails || !propertyDetails.property_slug) {
     return <div>Error: Property details are missing or invalid.</div>;
   }
 
+  const themeClass = `theme-${Math.min(16, Math.max(1, Number(colorTheme) || 1))}`;
   return (
-    <div className="App theme-redesign">
+    <div className={`App theme-redesign ${themeClass}`}>
       <Header 
         headerData={headerData} 
         slug={propertyDetails.property_slug}
@@ -40,12 +41,12 @@ function StudioTemplate({ propertyDetails, headerData, galleryData }) {
         />
       </Suspense>
       <PropertyPriceTable slug={propertyDetails.property_slug} />
+      <MasterPlan slug={propertyDetails.property_slug} />
       <Returns slug={propertyDetails.property_slug}/>
       <Suspense fallback={<Loader />}>
         <PropertyDetails propertyDetails={propertyDetails} />
       </Suspense>
       <Advertise slug={propertyDetails.property_slug}/>
-      <MasterPlan slug={propertyDetails.property_slug} />
       <Amenities slug={propertyDetails.property_slug} />
       <Gallery slug={propertyDetails.property_slug} />
       <LocationMap slug={propertyDetails.property_slug} />

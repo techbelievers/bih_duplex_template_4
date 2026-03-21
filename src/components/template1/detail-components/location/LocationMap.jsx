@@ -52,6 +52,7 @@ const CompactLocation = ({slug}) => {
       {/* Map Section */}
      
       <div className={styles.mapWrapper}>
+      <span className={styles.label}>Location</span>
       <h2 className={styles.heading}>{mapData.heading}</h2>
         <div
           className={styles.map}

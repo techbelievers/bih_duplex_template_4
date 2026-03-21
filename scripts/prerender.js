@@ -25,7 +25,7 @@ async function fetchStudioRoutes() {
       const properties = data.property_details || [];
       return properties
         .filter(prop => prop.property_slug && !prop.property_slug.includes('.com'))
-        .map(prop => `/studios/${prop.property_slug}`);
+        .map(prop => `/${prop.property_slug}`);
     }
   } catch (error) {
     console.warn('Could not fetch studio routes:', error.message);

@@ -72,28 +72,43 @@ const FloatingButtons = ({ slug: slugProp, websiteDomain }) => {
     <>
       {footerData && (
         <div className={styles.floatingButtons}>
-          {/* WhatsApp Button */}
-          <div
-            className={`${styles.floatingButton} ${styles.whatsapp}`}
-            onClick={() => setIsWhatsAppPopupOpen((prev) => !prev)}
-          >
-            <FaWhatsapp />
-          </div>
+          <div className={styles.floatingDock}>
+            <span className={styles.dockLabel}>Quick connect</span>
 
-          {/* Call Button */}
-          <a
-            href={`tel:${footerData.g_setting.footer_phone}`}
-            className={`${styles.floatingButton} ${styles.call}`}
-          >
-            <FaPhoneAlt />
-          </a>
+            {/* WhatsApp Button */}
+            <button
+              type="button"
+              className={`${styles.floatingButton} ${styles.whatsapp}`}
+              onClick={() => setIsWhatsAppPopupOpen((prev) => !prev)}
+            >
+              <span className={styles.iconWrap}>
+                <FaWhatsapp />
+              </span>
+              <span className={styles.actionText}>WhatsApp</span>
+            </button>
 
-          {/* Contact Us Button */}
-          <div
-            className={`${styles.floatingButton} ${styles.enquire}`}
-            onClick={() => setIsContactFormOpen((prev) => !prev)}
-          >
-            <FaEnvelope />
+            {/* Call Button */}
+            <a
+              href={`tel:${footerData.g_setting.footer_phone}`}
+              className={`${styles.floatingButton} ${styles.call}`}
+            >
+              <span className={styles.iconWrap}>
+                <FaPhoneAlt />
+              </span>
+              <span className={styles.actionText}>Call now</span>
+            </a>
+
+            {/* Contact Us Button */}
+            <button
+              type="button"
+              className={`${styles.floatingButton} ${styles.enquire}`}
+              onClick={() => setIsContactFormOpen((prev) => !prev)}
+            >
+              <span className={styles.iconWrap}>
+                <FaEnvelope />
+              </span>
+              <span className={styles.actionText}>Enquire</span>
+            </button>
           </div>
         </div>
       )}

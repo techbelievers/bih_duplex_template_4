@@ -1,3 +1,4 @@
+/* Luxury Thank You page */
 .thankYouPage {
   display: flex;
   justify-content: center;
@@ -5,8 +6,8 @@
   min-height: 100vh;
   text-align: center;
   position: relative;
-  background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg) 100%);
-  font-family: var(--font-body);
+  background: linear-gradient(135deg, var(--luxury-cream-dark) 0%, var(--luxury-cream) 100%);
+  font-family: var(--font-luxury-body);
   overflow: hidden;
   padding: 40px 20px;
 }
@@ -19,8 +20,8 @@
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(15, 118, 110, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.08) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(201, 162, 39, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(26, 29, 41, 0.04) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -31,10 +32,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 50%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-gold-dark) 50%, var(--luxury-navy) 100%);
   clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
   z-index: 0;
-  opacity: 0.1;
+  opacity: 0.08;
 }
 
 .content {
@@ -45,19 +46,19 @@
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 2px solid rgba(15, 118, 110, 0.1);
+  box-shadow: var(--shadow-luxury-hover);
+  border: 1px solid var(--luxury-border);
 }
 
 .heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
   color: var(--color-text-dark);
   margin-bottom: 25px;
   position: relative;
   display: inline-block;
-  background: linear-gradient(135deg, var(--color-text-dark) 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, var(--color-text-dark) 0%, var(--luxury-gold-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -72,19 +73,12 @@
   transform: translateX(-50%);
   width: 120px;
   height: 5px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
+  background: var(--luxury-gold);
   border-radius: 3px;
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
 .subheading {
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 400;
   color: var(--color-text-light);
@@ -99,14 +93,14 @@
   padding: 16px 40px;
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: var(--font-body);
-  color: white;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  font-family: var(--font-luxury-body);
+  color: var(--luxury-navy);
+  background: var(--luxury-gold);
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.3);
+  box-shadow: 0 8px 25px rgba(201, 162, 39, 0.3);
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
@@ -120,7 +114,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #115E59 100%);
+  background: var(--luxury-gold-dark);
   transition: left 0.3s ease;
   z-index: -1;
 }
@@ -130,8 +124,9 @@
 }
 
 .goBackButton:hover {
+  color: #fff;
   transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(15, 118, 110, 0.4);
+  box-shadow: 0 12px 35px rgba(201, 162, 39, 0.4);
 }
 
 .goBackButton:active {
@@ -146,15 +141,15 @@
   transform: translateX(-50%);
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: var(--luxury-gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  color: white;
+  color: var(--luxury-navy);
   font-weight: 700;
-  box-shadow: 0 10px 30px rgba(15, 118, 110, 0.4);
+  box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
   animation: successPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 

@@ -1,8 +1,9 @@
-/* Property details - clean block design */
+/* Luxury Property details - studio page */
 .propertyDetailsContainer {
   padding: 3.5rem 1.5rem;
-  background: var(--color-bg-light);
-  font-family: var(--font-body);
+  background: var(--color-bg-card);
+  font-family: var(--font-luxury-body);
+  border-top: 1px solid var(--luxury-border);
 }
 
 .clipPathBackground {
@@ -18,11 +19,20 @@
 }
 
 .heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   color: var(--color-text-dark);
   margin: 0 0 0.5rem;
+}
+
+.heading::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--luxury-gold);
+  margin: 0.5rem auto 0;
 }
 
 .propertyTagline {
@@ -45,41 +55,42 @@
   font-weight: 500;
   color: var(--color-text);
   background: var(--color-bg-card);
-  border: 1px solid var(--color-bg-light);
+  border: 1px solid var(--luxury-border);
   border-radius: 999px;
   cursor: pointer;
-  font-family: var(--font-body);
-  transition: border-color 0.2s, background 0.2s;
+  font-family: var(--font-luxury-body);
+  transition: border-color var(--transition-smooth), background var(--transition-smooth), color var(--transition-smooth);
 }
 
 .tabButton:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--luxury-gold);
+  color: var(--luxury-gold-dark);
 }
 
 .tabButton.activeTab {
-  background: var(--color-primary);
-  color: #fff;
-  border-color: var(--color-primary);
+  background: var(--luxury-gold);
+  color: var(--luxury-navy);
+  border-color: var(--luxury-gold);
 }
 
 .descriptionCard {
-  background: var(--color-bg-card);
+  background: var(--luxury-cream);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  border: 1px solid var(--color-bg-light);
+  border: 1px solid var(--luxury-border);
   max-width: 800px;
   margin: 0 auto;
+  box-shadow: var(--shadow-luxury-card);
 }
 
 .sectionHeading {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--color-text-dark);
   margin: 0 0 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-bg-light);
+  border-bottom: 1px solid var(--luxury-border);
 }
 
 .description {
@@ -94,11 +105,12 @@
 
 .description p { margin: 0 0 0.75rem; }
 .description h1, .description h2, .description h3 {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   margin: 1.25rem 0 0.5rem;
   font-size: 1.1rem;
 }
-.description a { color: var(--color-primary); text-decoration: none; }
+.description a { color: var(--luxury-gold-dark); text-decoration: none; }
+.description a:hover { color: var(--luxury-navy); }
 .description ul, .description ol { margin: 0.5rem 0 0.75rem 1.25rem; }
 .description li { margin-bottom: 0.25rem; }
 
@@ -107,16 +119,17 @@
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--luxury-gold-dark);
   background: transparent;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--luxury-gold);
   border-radius: var(--radius);
   cursor: pointer;
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
+  transition: background var(--transition-smooth), color var(--transition-smooth);
 }
 
 .readMoreButton:hover {
-  background: rgba(15, 118, 110, 0.08);
+  background: rgba(201, 162, 39, 0.1);
 }
 
 .loading,

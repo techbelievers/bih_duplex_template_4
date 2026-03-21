@@ -50,15 +50,19 @@ const ContactUs = () => {
 
   return (
     <section id="contact" className={styles.section}>
-      <div className={styles.wrap}>
-        <div className={styles.info}>
+      <div className={styles.layout}>
+        {/* Left: navy panel with headline + CTA */}
+        <div className={styles.infoPanel}>
+          <span className={styles.infoLabel}>Contact</span>
           <h2 className={styles.infoTitle}>{contactName}</h2>
           <div className={styles.infoText} dangerouslySetInnerHTML={{ __html: contactDetail }} />
-          <a href={`tel:${contactPhone.replace(/\s/g, "")}`} className={styles.phone}>
-            {contactPhone}
+          <a href={`tel:${contactPhone.replace(/\s/g, "")}`} className={styles.phoneCta}>
+            <span className={styles.phoneCtaLabel}>Call us</span>
+            <span className={styles.phoneCtaValue}>{contactPhone}</span>
           </a>
         </div>
-        <div className={styles.formWrap}>
+        {/* Right: form card */}
+        <div className={styles.formPanel}>
           <h3 className={styles.formTitle}>Send a message</h3>
           {success && (
             <div className={styles.success}>
@@ -75,7 +79,7 @@ const ContactUs = () => {
             <input type="email" name="email_id" placeholder="Email" value={formData.email_id} onChange={handleChange} className={styles.input} />
             <textarea name="message" placeholder="Message" value={formData.message} onChange={handleChange} rows={4} className={styles.textarea} />
             <button type="submit" disabled={isSubmitting} className={styles.btn}>
-              {isSubmitting ? "Sending…" : "Send"}
+              {isSubmitting ? "Sending…" : "Send message"}
             </button>
           </form>
         </div>

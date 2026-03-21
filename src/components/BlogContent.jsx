@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { API, DEFAULT_DOMAIN } from '../../config.js';
 import styles from '../pages/blogs/BlogDetail.module.css';
-import Loader from './loader/Loader';
+import Loader from './loader/Loader.jsx';
 
 const BlogContent = () => {
   const { post_slug } = useParams();

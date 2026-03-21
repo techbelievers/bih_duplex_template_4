@@ -1,25 +1,391 @@
-/* CSS Variables - Soft minimal real estate theme */
+/* CSS Variables - Luxury property theme */
 :root {
-  --color-primary: #0F766E;
-  --color-primary-dark: #0D9488;
-  --color-primary-light: #14B8A6;
-  --color-accent: #D97706;
-  --color-accent-dark: #B45309;
-  --color-text: #44403C;
-  --color-text-dark: #1C1917;
-  --color-text-light: #78716C;
-  --color-bg: #FAFAF9;
-  --color-bg-light: #F5F5F4;
-  --color-bg-card: #FFFFFF;
-  --color-bg-dark: #1C1917;
-  --color-bg-dark-alt: #292524;
+  /* Legacy aliases for compatibility */
+  --color-primary: #1a1d29;
+  --color-primary-dark: #0d0f14;
+  --color-primary-light: #2d3142;
+  --color-accent: #c9a227;
+  --color-accent-dark: #a8861f;
+  --color-text: #4a4a4a;
+  --color-text-dark: #1a1d29;
+  --color-text-light: #6b6b6b;
+  --color-bg: #faf9f6;
+  --color-bg-light: #f8f6f3;
+  --color-bg-card: #ffffff;
+  --color-bg-dark: #1a1d29;
+  --color-bg-dark-alt: #252830;
   --color-success: #059669;
-  --font-heading: 'Fraunces', 'Georgia', serif;
+  --font-heading: 'Cormorant Garamond', 'Fraunces', Georgia, serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --radius: 10px;
-  --radius-lg: 14px;
-  --shadow: 0 1px 3px 0 rgba(28, 25, 23, 0.08), 0 1px 2px -1px rgba(28, 25, 23, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.06), 0 4px 6px -4px rgba(28, 25, 23, 0.04);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 2px 8px rgba(26, 29, 41, 0.06), 0 1px 2px rgba(26, 29, 41, 0.04);
+  --shadow-lg: 0 12px 24px rgba(26, 29, 41, 0.08), 0 4px 12px rgba(26, 29, 41, 0.04);
+  /* Luxury design tokens */
+  --luxury-gold: #c9a227;
+  --luxury-gold-light: #d4af37;
+  --luxury-gold-dark: #a8861f;
+  --luxury-cream: #faf9f6;
+  --luxury-cream-dark: #f0ede6;
+  --luxury-navy: #1a1d29;
+  --luxury-navy-light: #2d3142;
+  --luxury-border: rgba(26, 29, 41, 0.12);
+  --luxury-border-gold: rgba(201, 162, 39, 0.35);
+  --font-luxury-heading: 'Cormorant Garamond', 'Fraunces', Georgia, serif;
+  --font-luxury-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --shadow-luxury-card: 0 4px 20px rgba(26, 29, 41, 0.06), 0 1px 3px rgba(26, 29, 41, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(26, 29, 41, 0.1), 0 4px 12px rgba(26, 29, 41, 0.06);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*
+  =============================================================================
+  COLOR THEMES - Theme ID is set via API (color_theme: 1–16). Apply class .theme-N
+  on app wrapper. Names and hex values are documented in THEMES.md in project root.
+  =============================================================================
+*/
+
+/* Theme 1: Classic Gold & Navy */
+.theme-1 {
+  --color-primary: #1a1d29;
+  --color-primary-dark: #0d0f14;
+  --color-primary-light: #2d3142;
+  --color-accent: #c9a227;
+  --color-accent-dark: #a8861f;
+  --color-bg-dark: #1a1d29;
+  --luxury-gold: #c9a227;
+  --luxury-gold-light: #d4af37;
+  --luxury-gold-dark: #a8861f;
+  --luxury-navy: #1a1d29;
+  --luxury-navy-light: #2d3142;
+  --luxury-border: rgba(26, 29, 41, 0.12);
+  --luxury-border-gold: rgba(201, 162, 39, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(26, 29, 41, 0.06), 0 1px 3px rgba(26, 29, 41, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(26, 29, 41, 0.1), 0 4px 12px rgba(26, 29, 41, 0.06);
+}
+
+/* Theme 2: Teal & Slate */
+.theme-2 {
+  --color-primary: #0f172a;
+  --color-primary-dark: #020617;
+  --color-primary-light: #1e293b;
+  --color-accent: #0d9488;
+  --color-accent-dark: #0f766e;
+  --color-bg-dark: #0f172a;
+  --luxury-gold: #0d9488;
+  --luxury-gold-light: #14b8a6;
+  --luxury-gold-dark: #0f766e;
+  --luxury-navy: #0f172a;
+  --luxury-navy-light: #1e293b;
+  --luxury-border: rgba(15, 23, 42, 0.12);
+  --luxury-border-gold: rgba(13, 148, 136, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+/* Theme 3: Burgundy & Wine */
+.theme-3 {
+  --color-primary: #1e0a0f;
+  --color-primary-dark: #0d0507;
+  --color-primary-light: #3d1520;
+  --color-accent: #9f2d3a;
+  --color-accent-dark: #7c232e;
+  --color-bg-dark: #1e0a0f;
+  --luxury-gold: #9f2d3a;
+  --luxury-gold-light: #b83d4a;
+  --luxury-gold-dark: #7c232e;
+  --luxury-navy: #1e0a0f;
+  --luxury-navy-light: #3d1520;
+  --luxury-border: rgba(30, 10, 15, 0.12);
+  --luxury-border-gold: rgba(159, 45, 58, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(30, 10, 15, 0.06), 0 1px 3px rgba(30, 10, 15, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(30, 10, 15, 0.1), 0 4px 12px rgba(30, 10, 15, 0.06);
+}
+
+/* Theme 4: Forest & Bronze */
+.theme-4 {
+  --color-primary: #0c1810;
+  --color-primary-dark: #061008;
+  --color-primary-light: #1a2e1c;
+  --color-accent: #b8860b;
+  --color-accent-dark: #8b6914;
+  --color-bg-dark: #0c1810;
+  --luxury-gold: #b8860b;
+  --luxury-gold-light: #daa520;
+  --luxury-gold-dark: #8b6914;
+  --luxury-navy: #0c1810;
+  --luxury-navy-light: #1a2e1c;
+  --luxury-border: rgba(12, 24, 16, 0.12);
+  --luxury-border-gold: rgba(184, 134, 11, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(12, 24, 16, 0.06), 0 1px 3px rgba(12, 24, 16, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(12, 24, 16, 0.1), 0 4px 12px rgba(12, 24, 16, 0.06);
+}
+
+/* Theme 5: Indigo & Amber */
+.theme-5 {
+  --color-primary: #1e1b4b;
+  --color-primary-dark: #0f0d24;
+  --color-primary-light: #312e81;
+  --color-accent: #d97706;
+  --color-accent-dark: #b45309;
+  --color-bg-dark: #1e1b4b;
+  --luxury-gold: #d97706;
+  --luxury-gold-light: #f59e0b;
+  --luxury-gold-dark: #b45309;
+  --luxury-navy: #1e1b4b;
+  --luxury-navy-light: #312e81;
+  --luxury-border: rgba(30, 27, 75, 0.12);
+  --luxury-border-gold: rgba(217, 119, 6, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(30, 27, 75, 0.06), 0 1px 3px rgba(30, 27, 75, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(30, 27, 75, 0.1), 0 4px 12px rgba(30, 27, 75, 0.06);
+}
+
+/* Theme 6: Charcoal & Rose Gold */
+.theme-6 {
+  --color-primary: #1c1917;
+  --color-primary-dark: #0c0a09;
+  --color-primary-light: #292524;
+  --color-accent: #b76e79;
+  --color-accent-dark: #9e5a64;
+  --color-bg-dark: #1c1917;
+  --luxury-gold: #b76e79;
+  --luxury-gold-light: #e8a0a8;
+  --luxury-gold-dark: #9e5a64;
+  --luxury-navy: #1c1917;
+  --luxury-navy-light: #292524;
+  --luxury-border: rgba(28, 25, 23, 0.12);
+  --luxury-border-gold: rgba(183, 110, 121, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(28, 25, 23, 0.1), 0 4px 12px rgba(28, 25, 23, 0.06);
+}
+
+/* Theme 7: Midnight & Copper */
+.theme-7 {
+  --color-primary: #0f1419;
+  --color-primary-dark: #06080a;
+  --color-primary-light: #1a2332;
+  --color-accent: #b87333;
+  --color-accent-dark: #8b5a2b;
+  --color-bg-dark: #0f1419;
+  --luxury-gold: #b87333;
+  --luxury-gold-light: #cd7f32;
+  --luxury-gold-dark: #8b5a2b;
+  --luxury-navy: #0f1419;
+  --luxury-navy-light: #1a2332;
+  --luxury-border: rgba(15, 20, 25, 0.12);
+  --luxury-border-gold: rgba(184, 115, 51, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(15, 20, 25, 0.06), 0 1px 3px rgba(15, 20, 25, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(15, 20, 25, 0.1), 0 4px 12px rgba(15, 20, 25, 0.06);
+}
+
+/* Theme 8: Ocean & Coral */
+.theme-8 {
+  --color-primary: #0c4a6e;
+  --color-primary-dark: #082f49;
+  --color-primary-light: #155e75;
+  --color-accent: #e11d48;
+  --color-accent-dark: #be123c;
+  --color-bg-dark: #0c4a6e;
+  --luxury-gold: #e11d48;
+  --luxury-gold-light: #f43f5e;
+  --luxury-gold-dark: #be123c;
+  --luxury-navy: #0c4a6e;
+  --luxury-navy-light: #155e75;
+  --luxury-border: rgba(12, 74, 110, 0.12);
+  --luxury-border-gold: rgba(225, 29, 72, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(12, 74, 110, 0.06), 0 1px 3px rgba(12, 74, 110, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(12, 74, 110, 0.1), 0 4px 12px rgba(12, 74, 110, 0.06);
+}
+
+/* Theme 9: Sand & Espresso */
+.theme-9 {
+  --color-primary: #292524;
+  --color-primary-dark: #1c1917;
+  --color-primary-light: #44403c;
+  --color-accent: #92400e;
+  --color-accent-dark: #78350f;
+  --color-bg-dark: #292524;
+  --luxury-gold: #b45309;
+  --luxury-gold-light: #d97706;
+  --luxury-gold-dark: #92400e;
+  --luxury-navy: #292524;
+  --luxury-navy-light: #44403c;
+  --luxury-border: rgba(41, 37, 36, 0.12);
+  --luxury-border-gold: rgba(180, 83, 9, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(41, 37, 36, 0.06), 0 1px 3px rgba(41, 37, 36, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(41, 37, 36, 0.1), 0 4px 12px rgba(41, 37, 36, 0.06);
+}
+
+/* Theme 10: Royal Blue & Gold */
+.theme-10 {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #0f1d30;
+  --color-primary-light: #2c5282;
+  --color-accent: #d4a017;
+  --color-accent-dark: #b8860b;
+  --color-bg-dark: #1e3a5f;
+  --luxury-gold: #d4a017;
+  --luxury-gold-light: #e6b800;
+  --luxury-gold-dark: #b8860b;
+  --luxury-navy: #1e3a5f;
+  --luxury-navy-light: #2c5282;
+  --luxury-border: rgba(30, 58, 95, 0.12);
+  --luxury-border-gold: rgba(212, 160, 23, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(30, 58, 95, 0.06), 0 1px 3px rgba(30, 58, 95, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(30, 58, 95, 0.1), 0 4px 12px rgba(30, 58, 95, 0.06);
+}
+
+/* Theme 11: Sage & Terracotta */
+.theme-11 {
+  --color-primary: #1c3329;
+  --color-primary-dark: #0d1f18;
+  --color-primary-light: #2d4a3e;
+  --color-accent: #c2410c;
+  --color-accent-dark: #9a3412;
+  --color-bg-dark: #1c3329;
+  --luxury-gold: #c2410c;
+  --luxury-gold-light: #ea580c;
+  --luxury-gold-dark: #9a3412;
+  --luxury-navy: #1c3329;
+  --luxury-navy-light: #2d4a3e;
+  --luxury-border: rgba(28, 51, 41, 0.12);
+  --luxury-border-gold: rgba(194, 65, 12, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(28, 51, 41, 0.06), 0 1px 3px rgba(28, 51, 41, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(28, 51, 41, 0.1), 0 4px 12px rgba(28, 51, 41, 0.06);
+}
+
+/* Theme 12: Graphite & Lime */
+.theme-12 {
+  --color-primary: #171717;
+  --color-primary-dark: #0a0a0a;
+  --color-primary-light: #262626;
+  --color-accent: #65a30d;
+  --color-accent-dark: #4d7c0f;
+  --color-bg-dark: #171717;
+  --luxury-gold: #65a30d;
+  --luxury-gold-light: #84cc16;
+  --luxury-gold-dark: #4d7c0f;
+  --luxury-navy: #171717;
+  --luxury-navy-light: #262626;
+  --luxury-border: rgba(23, 23, 23, 0.12);
+  --luxury-border-gold: rgba(101, 163, 13, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(23, 23, 23, 0.06), 0 1px 3px rgba(23, 23, 23, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(23, 23, 23, 0.1), 0 4px 12px rgba(23, 23, 23, 0.06);
+}
+
+/* Theme 13: Plum & Champagne */
+.theme-13 {
+  --color-primary: #3b0764;
+  --color-primary-dark: #1e0336;
+  --color-primary-light: #581c87;
+  --color-accent: #fef3c7;
+  --color-accent-dark: #fde68a;
+  --color-bg-dark: #3b0764;
+  --luxury-gold: #fcd34d;
+  --luxury-gold-light: #fde68a;
+  --luxury-gold-dark: #f59e0b;
+  --luxury-navy: #3b0764;
+  --luxury-navy-light: #581c87;
+  --luxury-border: rgba(59, 7, 100, 0.12);
+  --luxury-border-gold: rgba(252, 211, 77, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(59, 7, 100, 0.06), 0 1px 3px rgba(59, 7, 100, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(59, 7, 100, 0.1), 0 4px 12px rgba(59, 7, 100, 0.06);
+}
+
+/* Theme 14: Steel & Crimson */
+.theme-14 {
+  --color-primary: #334155;
+  --color-primary-dark: #1e293b;
+  --color-primary-light: #475569;
+  --color-accent: #dc2626;
+  --color-accent-dark: #b91c1c;
+  --color-bg-dark: #334155;
+  --luxury-gold: #dc2626;
+  --luxury-gold-light: #ef4444;
+  --luxury-gold-dark: #b91c1c;
+  --luxury-navy: #334155;
+  --luxury-navy-light: #475569;
+  --luxury-border: rgba(51, 65, 85, 0.12);
+  --luxury-border-gold: rgba(220, 38, 38, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(51, 65, 85, 0.06), 0 1px 3px rgba(51, 65, 85, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(51, 65, 85, 0.1), 0 4px 12px rgba(51, 65, 85, 0.06);
+}
+
+/* Theme 15: Ivory & Olive */
+.theme-15 {
+  --color-primary: #27342a;
+  --color-primary-dark: #1a231c;
+  --color-primary-light: #3d4d3f;
+  --color-accent: #6b7280;
+  --color-accent-dark: #4b5563;
+  --color-bg-dark: #27342a;
+  --luxury-gold: #84a98c;
+  --luxury-gold-light: #a7c4a8;
+  --luxury-gold-dark: #52796f;
+  --luxury-navy: #27342a;
+  --luxury-navy-light: #3d4d3f;
+  --luxury-border: rgba(39, 52, 42, 0.12);
+  --luxury-border-gold: rgba(132, 169, 140, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(39, 52, 42, 0.06), 0 1px 3px rgba(39, 52, 42, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(39, 52, 42, 0.1), 0 4px 12px rgba(39, 52, 42, 0.06);
+}
+
+/* Theme 16: Onyx & Brass */
+.theme-16 {
+  --color-primary: #0c0c0c;
+  --color-primary-dark: #000000;
+  --color-primary-light: #1a1a1a;
+  --color-accent: #b5a642;
+  --color-accent-dark: #8b7355;
+  --color-bg-dark: #0c0c0c;
+  --luxury-gold: #b5a642;
+  --luxury-gold-light: #c9b858;
+  --luxury-gold-dark: #8b7355;
+  --luxury-navy: #0c0c0c;
+  --luxury-navy-light: #1a1a1a;
+  --luxury-border: rgba(12, 12, 12, 0.12);
+  --luxury-border-gold: rgba(181, 166, 66, 0.35);
+  --shadow-luxury-card: 0 4px 20px rgba(12, 12, 12, 0.06), 0 1px 3px rgba(12, 12, 12, 0.04);
+  --shadow-luxury-hover: 0 16px 40px rgba(12, 12, 12, 0.1), 0 4px 12px rgba(12, 12, 12, 0.06);
+}
+
+/* Custom scrollbar - luxury theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--luxury-cream-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--luxury-gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--luxury-gold-dark);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--luxury-gold) var(--luxury-cream-dark);
+}
+
+::selection {
+  background: rgba(201, 162, 39, 0.25);
+  color: var(--luxury-navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--luxury-gold);
+  outline-offset: 2px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--luxury-gold);
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.15);
 }
 
 body {
@@ -91,35 +457,35 @@ button, a {
 
 /* Button Styles */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: linear-gradient(135deg, var(--luxury-navy) 0%, var(--color-primary-dark) 100%);
   color: white;
   padding: 12px 32px;
   border: none;
   border-radius: var(--radius);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(15, 118, 110, 0.25);
+  box-shadow: 0 4px 14px rgba(26, 29, 41, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px -1px rgba(15, 118, 110, 0.35);
+  box-shadow: 0 6px 20px rgba(26, 29, 41, 0.3);
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-gold-dark) 100%);
+  color: var(--luxury-navy);
   padding: 12px 32px;
   border: none;
   border-radius: var(--radius);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.25);
+  box-shadow: 0 4px 14px rgba(201, 162, 39, 0.35);
 }
 
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px -1px rgba(217, 119, 6, 0.35);
+  box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
 }
 
 @keyframes fadeIn {
@@ -186,6 +552,6 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-dark);
-  text-decoration: underline;
+  color: var(--luxury-gold-dark);
+  text-decoration: none;
 }

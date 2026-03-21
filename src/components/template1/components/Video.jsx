@@ -22,6 +22,7 @@ const Video = () => {
 
   return (
     <section className={styles.section}>
+      <span className={styles.label}>Watch</span>
       <h2 className={styles.title}>{heading}</h2>
       {subheading && <p className={styles.sub}>{subheading}</p>}
       <div className={styles.grid}>

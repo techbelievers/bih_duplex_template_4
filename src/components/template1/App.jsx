@@ -55,9 +55,10 @@ const LoadingFallback = () => (
   </div>
 );
 
-function App({ propertyDetails }) {
+function App({ propertyDetails, colorTheme = 1 }) {
+  const themeClass = `theme-${Math.min(16, Math.max(1, Number(colorTheme) || 1))}`;
   return (
-    <div className="App theme-redesign">
+    <div className={`App theme-redesign ${themeClass}`}>
       {/* Critical components - Load immediately */}
       <Suspense fallback={<LoadingFallback />}>
         <Header />

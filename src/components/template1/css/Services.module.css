@@ -1,8 +1,19 @@
 .section {
-  padding: 3rem 1.5rem;
-  background: var(--color-bg-dark);
+  padding: 4rem 1.5rem;
+  background: var(--luxury-navy);
   color: #fff;
-  font-family: var(--font-body);
+  font-family: var(--font-luxury-body);
+}
+
+.label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--luxury-gold);
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .grid {
@@ -24,7 +35,7 @@
 
 .card:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: var(--color-primary);
+  border-color: var(--luxury-gold);
 }
 
 .cardImg {
@@ -36,7 +47,7 @@
 }
 
 .cardTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-luxury-heading);
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 0.25rem;

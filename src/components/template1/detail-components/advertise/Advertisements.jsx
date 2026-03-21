@@ -57,6 +57,7 @@ const Advertisements = ({slug}) => {
 
   return (
     <section className={styles.advertisementSection}>
+      <span className={styles.label}>Featured</span>
       <h2 className={styles.heading}>{heading}</h2>
       <div className={styles.sliderContainer}>
         <button className={styles.arrow} onClick={handlePrev}>

@@ -1,77 +1,86 @@
-/* Amenities - property detail page redesign */
-.amenitiesSection {
-  padding: 4rem 1.5rem;
-  background: var(--color-bg);
-  font-family: var(--font-body);
+/* Amenities - real estate style section */
+.section {
+  padding: 4.5rem 1.5rem 5rem;
+  background: var(--color-bg-card);
+  font-family: var(--font-luxury-body);
+  border-top: 1px solid var(--luxury-border);
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.headingContainer {
+.header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.heading {
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+.label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--luxury-gold-dark);
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: var(--font-luxury-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
   font-weight: 700;
   color: var(--color-text-dark);
   margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
 }
 
-.subHeading {
+.title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--luxury-gold);
+  margin: 0.75rem auto 0;
+}
+
+.subtitle {
   font-size: 1rem;
   color: var(--color-text-light);
   margin: 0;
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.55;
 }
 
+/* Grid - real estate card layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
 }
 
 .card {
-  background: var(--color-bg-card);
+  background: var(--luxury-cream);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--color-bg-light);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+  border: 1px solid var(--luxury-border);
+  box-shadow: 0 2px 12px rgba(26, 29, 41, 0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.12);
-  border-color: rgba(15, 118, 110, 0.25);
+  border-color: var(--luxury-border-gold);
+  box-shadow: 0 12px 28px rgba(26, 29, 41, 0.08);
+  transform: translateY(-3px);
 }
 
-.imageWrapper {
+.media {
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--color-bg-light);
-}
-
-.imageWrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.card:hover .imageWrapper::after {
-  opacity: 1;
+  background: var(--luxury-cream-dark);
 }
 
 .image {
@@ -83,45 +92,82 @@
 }
 
 .card:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.06);
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--luxury-cream-dark) 0%, rgba(201, 162, 39, 0.08) 100%);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--luxury-gold);
+  background: rgba(201, 162, 39, 0.15);
+  border-radius: 50%;
+}
+
+.badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--luxury-navy);
+  background: var(--luxury-gold);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(201, 162, 39, 0.3);
+}
+
+.content {
+  padding: 1rem 1.25rem;
+  border-top: 2px solid var(--luxury-border);
 }
 
 .name {
-  font-family: var(--font-heading);
-  font-size: 1.0625rem;
+  font-family: var(--font-luxury-heading);
+  font-size: 1rem;
   font-weight: 600;
-  padding: 1.125rem 1.25rem;
-  margin: 0;
   color: var(--color-text-dark);
-  background: var(--color-bg-card);
-  transition: color 0.2s;
+  margin: 0;
+  line-height: 1.35;
 }
 
 .card:hover .name {
-  color: var(--color-primary);
+  color: var(--luxury-navy);
 }
 
-.fadeIn {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: amenityFadeIn 0.5s ease forwards;
-}
-
-@keyframes amenityFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }
 
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.875rem;
+  }
+
+  .content {
+    padding: 0.875rem 1rem;
   }
 
   .name {
-    padding: 0.875rem 1rem;
     font-size: 0.9375rem;
   }
 }

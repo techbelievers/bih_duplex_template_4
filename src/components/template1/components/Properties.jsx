@@ -8,6 +8,7 @@ const PropertiesSection = () => {
   const [sectionInfo, setSectionInfo] = useState({ heading: "", subheading: "" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -63,67 +64,88 @@ const PropertiesSection = () => {
     );
   }
 
+  const openStudio = (slug) => {
+    window.location.href = `/${slug}`;
+  };
+
+  const handleViewAll = () => {
+    setShowAll(true);
+    setTimeout(() => {
+      document.getElementById("properties")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
+  const renderCard = (property) => (
+    <article
+      key={property.id}
+      className={styles.card}
+      onClick={() => openStudio(property.property_slug)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openStudio(property.property_slug);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
+      <div className={styles.cardImage}>
+        <img
+          src={`https://buyindiahomes.in/uploads/property_featured_photos/${property.property_featured_photo || "default-image.jpg"}`}
+          alt={property.property_name || "Property"}
+          onError={(e) => { e.target.src = "/default-image.jpg"; }}
+        />
+        <span className={styles.cardPrice}>₹ {property.property_price} Lakhs *</span>
+      </div>
+      <div className={styles.cardBody}>
+        <h3 className={styles.cardTitle}>{property.property_name || "Premium Property"}</h3>
+        {property.builder_name && (
+          <p className={styles.cardMeta}>{property.builder_name}</p>
+        )}
+        {(property.sub_location || property.property_location_name) && (
+          <p className={styles.cardLocation}>
+            {[property.sub_location, property.property_location_name].filter(Boolean).join(", ")}
+          </p>
+        )}
+        <span className={styles.cardCta}>View details</span>
+      </div>
+    </article>
+  );
+
   return (
     <section id="properties" className={styles.section}>
-      <header className={styles.head}>
-        <h2 className={styles.headTitle}>
-          {sectionInfo.heading || "Discover"}
-        </h2>
+      <div className={styles.head}>
+        <span className={styles.headLabel}>Our developments</span>
+        <h2 className={styles.headTitle}>{sectionInfo.heading || "Discover"}</h2>
         {sectionInfo.subheading && (
           <p className={styles.headSub}>{sectionInfo.subheading}</p>
         )}
-      </header>
-
-      <div className={styles.list}>
-        {properties.map((property) => (
-          <article
-            key={property.id}
-            className={styles.card}
-            onClick={() => (window.location.href = `/studios/${property.property_slug}`)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                window.location.href = `/studios/${property.property_slug}`;
-              }
-            }}
-            role="button"
-            tabIndex={0}
-          >
-            <div className={styles.cardImage}>
-              <img
-                src={`https://buyindiahomes.in/uploads/property_featured_photos/${property.property_featured_photo || "default-image.jpg"}`}
-                alt={property.property_name || "Property"}
-                onError={(e) => { e.target.src = "/default-image.jpg"; }}
-              />
-              <span className={styles.cardPrice}>
-                ₹ {property.property_price} Lakhs *
-              </span>
-            </div>
-            <div className={styles.cardBody}>
-              <h3 className={styles.cardTitle}>
-                {property.property_name || "Premium Property"}
-              </h3>
-              {property.builder_name && (
-                <p className={styles.cardMeta}>{property.builder_name}</p>
-              )}
-              {([property.sub_location, property.property_location_name].filter(Boolean).join(", ") || null) && (
-                <p className={styles.cardLocation}>
-                  {[property.sub_location, property.property_location_name].filter(Boolean).join(", ")}
-                </p>
-              )}
-              <div className={styles.cardSpecs}>
-                {property.property_type_price_range && (
-                  <span>{property.property_type_price_range}</span>
-                )}
-                {property.property_price_range && (
-                  <span>{property.property_price_range}</span>
-                )}
-              </div>
-              <span className={styles.cardAction}>View details →</span>
-            </div>
-          </article>
-        ))}
+        <div className={styles.headAction}>
+          {showAll ? (
+            <button type="button" className={styles.viewAllBtn} onClick={() => setShowAll(false)}>
+              Show less
+            </button>
+          ) : (
+            <button type="button" className={styles.viewAllBtn} onClick={handleViewAll}>
+              View all
+            </button>
+          )}
+        </div>
       </div>
+
+      {showAll ? (
+        <div className={styles.gridAll}>
+          {properties.map((property) => renderCard(property))}
+        </div>
+      ) : (
+        <div className={styles.scrollWrap}>
+          <div className={styles.track}>
+          {properties.map((property) => (
+            renderCard(property)
+          ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

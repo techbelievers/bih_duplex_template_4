@@ -35,9 +35,7 @@ const HeroBanner = () => {
   if (loading) {
     return (
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <div className={styles.skeleton} />
-        </div>
+        <div className={styles.skeleton} />
       </section>
     );
   }
@@ -45,7 +43,7 @@ const HeroBanner = () => {
   if (error) {
     return (
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
+        <div className={styles.contentBlock}>
           <p className={styles.errorText}>{error}</p>
         </div>
       </section>
@@ -58,15 +56,18 @@ const HeroBanner = () => {
       style={{ backgroundImage: heroData?.backgroundImage ? `url(${heroData.backgroundImage})` : undefined }}
     >
       <div className={styles.overlay} />
-      <div className={styles.heroInner}>
+      <div className={styles.contentBlock}>
+        <span className={styles.badge}>Studio apartments</span>
         <h1 className={styles.title}>{heroData?.heading || "Find Your Space"}</h1>
         {heroData?.subheading && (
           <p className={styles.subtitle}>{heroData.subheading}</p>
         )}
-        <a href="#properties" className={styles.cta}>
-          View properties
-        </a>
-        <p className={styles.trust}>MAHARERA Registered · Verified Listings</p>
+        <div className={styles.ctaStrip}>
+          <a href="#properties" className={styles.cta}>
+            View properties
+          </a>
+          <span className={styles.trust}>MAHARERA Registered · Verified Listings</span>
+        </div>
       </div>
     </section>
   );
