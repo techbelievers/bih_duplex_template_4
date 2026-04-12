@@ -159,8 +159,10 @@
 .rera {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0.9rem;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 999px;
   font-size: 0.8125rem;
@@ -177,6 +179,32 @@
 .reraNum {
   font-weight: 600;
   color: var(--luxury-gold);
+}
+
+.reraLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.15rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--luxury-gold);
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  transition: background var(--transition-smooth), color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.reraLink:hover {
+  background: rgba(201, 162, 39, 0.2);
+  color: #fff;
+  border-color: var(--luxury-gold);
+}
+
+.reraLinkIcon {
+  font-size: 0.7rem;
+  opacity: 0.9;
 }
 
 .disclaimer {

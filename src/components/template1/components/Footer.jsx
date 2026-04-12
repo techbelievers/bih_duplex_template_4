@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { API } from "../../../../config.js";
 import styles from "../css/Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -68,6 +68,13 @@ const Footer = () => {
   const phone = g_setting.footer_phone || "+91-98765-43210";
   const logo = g_setting.builder_logo || "/default-logo.png";
 
+  /** Official MahaRERA portal; override via API: footer_agent_rera_url or footer_rera_url */
+  const MAHARERA_PORTAL_URL = "https://maharera.mahaonline.gov.in/";
+  const reraVerifyUrl =
+    (typeof g_setting.footer_agent_rera_url === "string" && g_setting.footer_agent_rera_url.trim()) ||
+    (typeof g_setting.footer_rera_url === "string" && g_setting.footer_rera_url.trim()) ||
+    MAHARERA_PORTAL_URL;
+
   return (
     <footer className={styles.footer}>
       {/* Top CTA strip */}
@@ -99,6 +106,7 @@ const Footer = () => {
             <a href="#blogs">Blogs</a>
             <a href="#faq">FAQ</a>
             {isHomePage && <a href="#contact">Contact</a>}
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </div>
           <div className={styles.social}>
             {social_icons.map((icon) => (
@@ -120,6 +128,17 @@ const Footer = () => {
           <div className={styles.rera}>
             <span className={styles.reraLabel}>Agent MahaRERA</span>
             <span className={styles.reraNum}>{g_setting.footer_agent_rera}</span>
+            <a
+              href={reraVerifyUrl}
+              className={styles.reraLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on MahaRERA
+              <span className={styles.reraLinkIcon} aria-hidden>
+                ↗
+              </span>
+            </a>
           </div>
         )}
 
