@@ -1,5 +1,8 @@
 /* Luxury Footer - CTA strip + centered stack layout */
+/* Shared content width matches header (1280px) so vertical edges line up */
 .footer {
+  --footer-inner-max: 1280px;
+  --footer-inner-pad: 1.5rem;
   background: var(--luxury-navy);
   color: rgba(255, 255, 255, 0.92);
   font-family: var(--font-luxury-body);
@@ -14,9 +17,10 @@
 }
 
 .ctaStripInner {
-  max-width: 960px;
+  max-width: var(--footer-inner-max);
   margin: 0 auto;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem var(--footer-inner-pad);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,9 +71,11 @@
 }
 
 .wrap {
-  max-width: 720px;
+  max-width: var(--footer-inner-max);
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 2rem;
+  padding: 2.5rem var(--footer-inner-pad) 2rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Centered single column */
@@ -159,6 +165,9 @@
   border-radius: 999px;
   font-size: 0.8125rem;
   border: 1px solid rgba(201, 162, 39, 0.25);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .reraLabel {
@@ -172,14 +181,19 @@
 
 .disclaimer {
   margin-top: 1.25rem;
-  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .disclaimer p {
   font-size: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
+  max-width: none;
+  text-align: left;
 }
 
 .bottom {

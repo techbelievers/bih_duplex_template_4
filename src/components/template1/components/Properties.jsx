@@ -95,7 +95,7 @@ const PropertiesSection = () => {
           alt={property.property_name || "Property"}
           onError={(e) => { e.target.src = "/default-image.jpg"; }}
         />
-        <span className={styles.cardPrice}>₹ {property.property_price} Lakhs *</span>
+        <span className={styles.cardPrice}>₹ {property.property_price} {property.price_unit} *</span>
       </div>
       <div className={styles.cardBody}>
         <h3 className={styles.cardTitle}>{property.property_name || "Premium Property"}</h3>

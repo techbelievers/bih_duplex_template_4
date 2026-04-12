@@ -72,42 +72,34 @@ const FloatingButtons = ({ slug: slugProp, websiteDomain }) => {
     <>
       {footerData && (
         <div className={styles.floatingButtons}>
-          <div className={styles.floatingDock}>
-            <span className={styles.dockLabel}>Quick connect</span>
-
-            {/* WhatsApp Button */}
+          <div className={styles.floatingDock} role="toolbar" aria-label="Quick contact">
             <button
               type="button"
               className={`${styles.floatingButton} ${styles.whatsapp}`}
               onClick={() => setIsWhatsAppPopupOpen((prev) => !prev)}
+              aria-label="WhatsApp"
+              title="WhatsApp"
             >
-              <span className={styles.iconWrap}>
-                <FaWhatsapp />
-              </span>
-              <span className={styles.actionText}>WhatsApp</span>
+              <FaWhatsapp className={styles.fabIcon} aria-hidden />
             </button>
 
-            {/* Call Button */}
             <a
               href={`tel:${footerData.g_setting.footer_phone}`}
               className={`${styles.floatingButton} ${styles.call}`}
+              aria-label="Call now"
+              title="Call now"
             >
-              <span className={styles.iconWrap}>
-                <FaPhoneAlt />
-              </span>
-              <span className={styles.actionText}>Call now</span>
+              <FaPhoneAlt className={styles.fabIcon} aria-hidden />
             </a>
 
-            {/* Contact Us Button */}
             <button
               type="button"
               className={`${styles.floatingButton} ${styles.enquire}`}
               onClick={() => setIsContactFormOpen((prev) => !prev)}
+              aria-label="Enquire"
+              title="Enquire"
             >
-              <span className={styles.iconWrap}>
-                <FaEnvelope />
-              </span>
-              <span className={styles.actionText}>Enquire</span>
+              <FaEnvelope className={styles.fabIcon} aria-hidden />
             </button>
           </div>
         </div>

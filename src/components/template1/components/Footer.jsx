@@ -91,7 +91,7 @@ const Footer = () => {
           <div className={styles.brand}>
             <img src={logo} alt="Logo" className={styles.logo} />
             <p className={styles.tagline}>
-              Your trusted partner for studio apartments. MAHARERA certified.
+              Your trusted partner for duplex apartments. MAHARERA certified.
             </p>
           </div>
           <div className={styles.linksRow}>

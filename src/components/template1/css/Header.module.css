@@ -31,7 +31,7 @@
 .logoWrap {
   flex: 1;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .logo {
