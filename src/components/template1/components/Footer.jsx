@@ -90,9 +90,9 @@ const Footer = () => {
         <div className={styles.main}>
           <div className={styles.brand}>
             <img src={logo} alt="Logo" className={styles.logo} />
-            <p className={styles.tagline}>
+            {/* <p className={styles.tagline}>
               Your trusted partner for duplex apartments. MAHARERA certified.
-            </p>
+            </p> */}
           </div>
           <div className={styles.linksRow}>
             <a href="#properties">Properties</a>
