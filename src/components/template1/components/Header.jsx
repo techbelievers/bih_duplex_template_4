@@ -81,7 +81,8 @@ const Header = ({ headerData: initialHeaderData, slug }) => {
   }
 
   const reservedPaths = ["/blogs", "/privacy-policy", "/thank-you"];
-const isPropertiesPage = /^\/[^/]+$/.test(location.pathname) && location.pathname.length > 1 && !reservedPaths.includes(location.pathname);
+// const isPropertiesPage = /^\/[^/]+$/.test(location.pathname) && location.pathname.length > 1 && !reservedPaths.includes(location.pathname);
+const isPropertiesPage = /^\/[^/]+\/?$/.test(location.pathname) && location.pathname.length > 1 && !reservedPaths.includes(location.pathname);
   const isHomePage = location.pathname === "/";
   const contact = headerData?.contact || headerData?.data?.contact || "+91-81818-17136";
   const logo = headerData?.logo || headerData?.data?.logo || "/default-logo.png";
