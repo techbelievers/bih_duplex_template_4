@@ -31,7 +31,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
 
       {/* Header */}
       <div className={styles.headerCard}>
-        <h1 className={styles.heading}>{propertyDetails.property_name}</h1>
+        <h2 className={styles.heading}>{propertyDetails.property_name}</h2>
         <p className={styles.propertyTagline}>
           {propertyDetails.tagline || 'Luxury Living at its Best'}
         </p>

@@ -114,7 +114,7 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
       <div className={styles.heroContent}>
       <div className={styles.card}>
         <span className={styles.badge}>Featured property</span>
-        <h1 className={styles.title}>{propertyDetails.property_name || "Property"}</h1>
+        <h2 className={styles.title}>{propertyDetails.property_name || "Property"}</h2>
         {propertyDetails.tagline && <p className={styles.tagline}>{propertyDetails.tagline}</p>}
 
         {hasKeyInfo && (
