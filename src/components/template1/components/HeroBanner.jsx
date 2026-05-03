@@ -57,7 +57,7 @@ const HeroBanner = () => {
     >
       <div className={styles.overlay} />
       <div className={styles.contentBlock}>
-        <span className={styles.badge}>Duplex apartments</span>
+        {/* <span className={styles.badge}>Duplex apartments</span> */}
         <h1 className={styles.title}>{heroData?.heading || "Find Your Space"}</h1>
         {heroData?.subheading && (
           <p className={styles.subtitle}>{heroData.subheading}</p>
