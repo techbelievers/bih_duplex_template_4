@@ -126,8 +126,8 @@ const StudioPage = () => {
       </Helmet>
 
       <main>
-        <h1 className="hidden-h1">{seo.title || propertyDetails.property_name || 'Studio Property'}</h1>
-        <h2 className="hidden-h1">{seo.meta_description || propertyDetails.seo_meta_description || propertyDetails.property_description || ''}</h2>
+        {/* <h1 className="hidden-h1">{seo.title || propertyDetails.property_name || 'Studio Property'}</h1>
+        <h2 className="hidden-h1">{seo.meta_description || propertyDetails.seo_meta_description || propertyDetails.property_description || ''}</h2> */}
         
         {templateId === '4' && (
           <Suspense fallback={<Loader />}>
