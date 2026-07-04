@@ -28,6 +28,7 @@ const CompactLocation = () => {
         {mapData.map && (
           <div className={styles.mapWrap} dangerouslySetInnerHTML={{ __html: mapData.map }} />
         )}
+        {highlights.length > 0 && (
         <div className={styles.highlights}>
           {list.map((item) => (
             <div key={item.id} className={styles.card}>
@@ -46,6 +47,7 @@ const CompactLocation = () => {
             </button>
           )}
         </div>
+        )}
       </div>
     </section>
   );

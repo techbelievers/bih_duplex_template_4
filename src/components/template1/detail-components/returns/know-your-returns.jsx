@@ -27,9 +27,9 @@ const KnowYourReturns = ({ slug }) => {
     fetchReturnsData();
   }, [slug]);
 
-  if (loading) return <div className={styles.loading}>Loading...</div>;
-  if (error) return <div className={styles.error}>Error: {error}</div>;
-  if (!data) return <div className={styles.empty}>No data available.</div>;
+  if (loading) return null;
+  if (error) return null;
+  if (!data?.returns?.length) return null;
 
   const { page, returns } = data;
   const heading = page?.[0]?.heading || "Know Your Returns";

@@ -62,6 +62,7 @@ const CompactLocation = ({slug}) => {
       </div>
 
       {/* Highlights Section */}
+      {locationData.length > 0 && (
       <div className={styles.highlightsSection}>
       <h2 className={styles.heading}>{locationDataHeading}</h2>
         <div className={styles.tabs}>
@@ -101,6 +102,7 @@ const CompactLocation = ({slug}) => {
           ))}
         </motion.div>
       </div>
+      )}
     </section>
   );
 };
