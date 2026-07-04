@@ -8,7 +8,6 @@ const PropertiesSection = () => {
   const [sectionInfo, setSectionInfo] = useState({ heading: "", subheading: "" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -68,13 +67,6 @@ const PropertiesSection = () => {
     window.location.href = `/${slug}`;
   };
 
-  const handleViewAll = () => {
-    setShowAll(true);
-    setTimeout(() => {
-      document.getElementById("properties")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  };
-
   const renderCard = (property) => (
     <article
       key={property.id}
@@ -120,32 +112,11 @@ const PropertiesSection = () => {
         {sectionInfo.subheading && (
           <p className={styles.headSub}>{sectionInfo.subheading}</p>
         )}
-        <div className={styles.headAction}>
-          {showAll ? (
-            <button type="button" className={styles.viewAllBtn} onClick={() => setShowAll(false)}>
-              Show less
-            </button>
-          ) : (
-            <button type="button" className={styles.viewAllBtn} onClick={handleViewAll}>
-              View all
-            </button>
-          )}
-        </div>
       </div>
 
-      {showAll ? (
-        <div className={styles.gridAll}>
-          {properties.map((property) => renderCard(property))}
-        </div>
-      ) : (
-        <div className={styles.scrollWrap}>
-          <div className={styles.track}>
-          {properties.map((property) => (
-            renderCard(property)
-          ))}
-          </div>
-        </div>
-      )}
+      <div className={styles.grid}>
+        {properties.map((property) => renderCard(property))}
+      </div>
     </section>
   );
 };

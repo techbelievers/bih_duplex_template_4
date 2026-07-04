@@ -1,9 +1,8 @@
-/* Luxury Properties - horizontal scroll strip with equal cards */
+/* Luxury Properties - responsive grid */
 .section {
   padding: 4rem 0 5rem;
   font-family: var(--font-luxury-body);
   background: var(--luxury-cream);
-  overflow: hidden;
 }
 
 .head {
@@ -44,32 +43,7 @@
   line-height: 1.5;
 }
 
-.headAction {
-  margin-top: 1.25rem;
-}
-
-.viewAllBtn {
-  padding: 0.6rem 1.5rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  font-family: var(--font-luxury-body);
-  color: var(--luxury-navy);
-  background: var(--luxury-gold);
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background var(--transition-smooth), transform var(--transition-smooth);
-  box-shadow: 0 2px 8px rgba(201, 162, 39, 0.25);
-}
-
-.viewAllBtn:hover {
-  background: var(--luxury-gold-dark);
-  color: #fff;
-  transform: scale(1.03);
-}
-
-/* Vertical grid when "View all" is open */
-.gridAll {
+.grid {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem 2rem;
@@ -78,49 +52,9 @@
   gap: 1.5rem;
 }
 
-.gridAll .card {
-  width: 100%;
-  flex: none;
-  min-width: 0;
-}
-
-/* Horizontal scroll container */
-.scrollWrap {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--luxury-gold) var(--luxury-cream-dark);
-}
-
-.scrollWrap::-webkit-scrollbar {
-  height: 6px;
-}
-
-.scrollWrap::-webkit-scrollbar-track {
-  background: var(--luxury-cream-dark);
-  border-radius: 3px;
-}
-
-.scrollWrap::-webkit-scrollbar-thumb {
-  background: var(--luxury-gold);
-  border-radius: 3px;
-}
-
-.track {
-  display: flex;
-  gap: 1.25rem;
-  padding: 0.5rem 1.5rem 1.5rem;
-  min-width: min-content;
-}
-
 .card {
-  flex: 0 0 320px;
-  width: 320px;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  width: 100%;
+  min-width: 0;
   background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -265,49 +199,14 @@
 }
 
 @media (max-width: 900px) {
-  .gridAll {
+  .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
 }
 
-/* Mobile: no horizontal scroll — stack cards vertically */
-@media (max-width: 768px) {
-  .scrollWrap {
-    overflow-x: visible;
-    overflow-y: visible;
-    scroll-snap-type: none;
-  }
-
-  .track {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    min-width: 0;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.5rem 1.25rem 1.5rem;
-    box-sizing: border-box;
-    gap: 1.25rem;
-  }
-
-  .track .card {
-    flex: none;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    scroll-snap-align: none;
-  }
-}
-
 @media (max-width: 480px) {
-  .track {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .gridAll {
+  .grid {
     grid-template-columns: 1fr;
     padding-left: 1rem;
     padding-right: 1rem;
