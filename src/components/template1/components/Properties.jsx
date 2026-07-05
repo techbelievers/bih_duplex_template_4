@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import styles from "../css/Properties.module.css";
 import { API } from "../../../../config.js";
@@ -8,6 +8,7 @@ const PropertiesSection = () => {
   const [sectionInfo, setSectionInfo] = useState({ heading: "", subheading: "" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -29,6 +30,23 @@ const PropertiesSection = () => {
     };
     fetchProperties();
   }, []);
+
+  const filteredProperties = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return properties;
+    return properties.filter((property) => {
+      const haystack = [
+        property.property_name,
+        property.builder_name,
+        property.sub_location,
+        property.property_location_name,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(q);
+    });
+  }, [properties, query]);
 
   if (loading) {
     return (
@@ -114,9 +132,54 @@ const PropertiesSection = () => {
         )}
       </div>
 
-      <div className={styles.grid}>
-        {properties.map((property) => renderCard(property))}
+      <div className={styles.searchWrap}>
+        <div className={styles.searchBox}>
+          <svg
+            className={styles.searchIcon}
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="text"
+            className={styles.searchInput}
+            placeholder="Search by name, builder or location..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search properties"
+          />
+          {query && (
+            <button
+              type="button"
+              className={styles.searchClear}
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+            >
+              &times;
+            </button>
+          )}
+        </div>
       </div>
+
+      {filteredProperties.length ? (
+        <div className={styles.grid}>
+          {filteredProperties.map((property) => renderCard(property))}
+        </div>
+      ) : (
+        <div className={styles.state}>
+          <h3>No matches found</h3>
+          <p>Try a different name, builder or location.</p>
+        </div>
+      )}
     </section>
   );
 };
