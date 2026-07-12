@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import styles from "../css/Properties.module.css";
 import { API } from "../../../../config.js";
+import { enrichPropertiesWithRera } from "../../../utils/reraSearch";
 
 const PropertiesSection = () => {
   const [properties, setProperties] = useState([]);
@@ -14,13 +15,19 @@ const PropertiesSection = () => {
     const fetchProperties = async () => {
       try {
         const response = await axios.get(API.GET_PROPERTIES(), { timeout: 10000 });
-        setProperties(response.data.property_details || []);
+        const propertiesData = response.data.property_details || [];
+        setProperties(propertiesData);
         if (response.data.page?.[0]) {
           setSectionInfo({
             heading: response.data.page[0].heading,
             subheading: response.data.page[0].subheading,
           });
         }
+        // Attach RERA ids in the background so listings become searchable by
+        // their MahaRERA number without blocking the initial render.
+        enrichPropertiesWithRera(propertiesData).then((enriched) => {
+          setProperties(enriched);
+        });
       } catch (err) {
         console.error("Error fetching properties:", err);
         setError("Failed to fetch properties");
@@ -40,6 +47,7 @@ const PropertiesSection = () => {
         property.builder_name,
         property.sub_location,
         property.property_location_name,
+        ...(property.rera_ids || []),
       ]
         .filter(Boolean)
         .join(" ")
@@ -152,7 +160,7 @@ const PropertiesSection = () => {
           <input
             type="text"
             className={styles.searchInput}
-            placeholder="Search by name, builder or location..."
+            placeholder="Search by name, builder, location or RERA ID..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search properties"
